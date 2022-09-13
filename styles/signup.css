@@ -1,0 +1,29 @@
+#nome-error{
+    color: red;
+  font-size: 0.8em;
+  display: none;
+}
+
+#sobrenome-error{
+    color: red;
+    font-size: 0.8em;
+    display: none;
+}
+
+#email-error{
+    color: red;
+    font-size: 0.8em;
+    display: none;
+}
+
+#senha-error{
+    color: red;
+    font-size: 0.8em;
+    display: none;
+}
+
+#senha-repeat-error{
+    color: red;
+    font-size: 0.8em;
+    display: none;
+}

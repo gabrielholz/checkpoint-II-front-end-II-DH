@@ -1,19 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkpoint</title>
+
+  <title>To-Do App</title>
+  <link rel="stylesheet" href="styles/acesso.css">
 </head>
 
 <body>
-  <main>
-    <h1>
-      Checkpoint II
-    </h1>
-  </main>
+  <div class="left">
+    <img src="./assets/pessoa-login.png" alt="">
+  </div>
+
+  <div class="right">
+    <form>
+      <div class="form-header">
+        <p>To-Do App</p>
+      </div>
+      <h1>Acessar</h1>
+      <label>
+        Email:
+        <input type="text" id="inputEmail" name="email">
+        <p id="email-error">Insira uma email válido!</p>
+      </label>
+      <label>
+        Senha:
+        <input id="inputPassword" type="password" name="password">
+        <p id="password-error">Insira uma senha válida!</p>
+      </label>
+
+      <button type="submit" id="botao" name="button">Acessar</button>
+
+    </form>
+    <div class="ingressar">
+      <a href="signup.html">Não possui conta? Crie agora mesmo</a>
+    </div>
+  </div>
+
+  <script src="/scripts/index.js"></script>
 </body>
 
 </html>
