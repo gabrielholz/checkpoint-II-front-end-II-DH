@@ -36,6 +36,11 @@ a {
   margin-left: .7em;
 }
 
+.user-info button {
+  border: none;
+  background-color: transparent
+}
+
 #closeApp{
   margin-left: 15px;
   font-size: .7em;
@@ -180,6 +185,10 @@ a {
 .tarefa .timestamp {
   font-size: .9em;
   color: rgb(134, 134, 134);
+}
+
+.btn-finished div{
+  border: none;
 }
 
 /* Tarefas terminadas ----------------------------------------------------------- */

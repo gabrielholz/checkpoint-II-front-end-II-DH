@@ -1,18 +1,19 @@
 let formulario = document.querySelector("form");
+let urlApi = "https://ctd-todo-api.herokuapp.com/v1/"
 
 
 document.getElementById('botao').disabled = true
 document.getElementById('botao').style.backgroundColor = 'gray'
-document.getElementById('inputEmail' && 'inputPassword').addEventListener('input', function habilita(event){
- event.preventDefault();
- let email = formulario["email"].value.split(" ").join("").trim();
-let password = formulario["password"].value.split(" ").join("").trim();
+document.getElementById('inputEmail' && 'inputPassword').addEventListener('input', function habilita(event) {
+  event.preventDefault();
+  let email = formulario["email"].value.split(" ").join("").trim();
+  let password = formulario["password"].value.split(" ").join("").trim();
 
-  if(email !== null || password !== null || email !== "" || password !== ""){
+  if (email !== null || password !== null || email !== "" || password !== "") {
     document.getElementById('botao').disabled = false
     document.getElementById('botao').style.backgroundColor = ''
   }
-  else{
+  else {
     document.getElementById('botao').disabled = true
     document.getElementById('botao').style.backgroundColor = 'gray'
   }
@@ -23,10 +24,10 @@ formulario.addEventListener("submit", function (event) {
   event.preventDefault();
   let email = formulario["email"].value.split(" ").join("").trim();
   let password = formulario["password"].value.split(" ").join("").trim();
- 
+
   let errouEmail = document.getElementById("email-error");
   let errouSenha = document.getElementById("password-error");
-  
+
 
   //esta função valida o email
   function validateEmail(email) {
@@ -42,6 +43,7 @@ formulario.addEventListener("submit", function (event) {
     } else {
       errouEmail.style.display = "none";
       document.getElementById("inputEmail").style.borderColor = "";
+      return true
     }
   }
 
@@ -52,10 +54,85 @@ formulario.addEventListener("submit", function (event) {
     } else {
       errouSenha.style.display = "none";
       document.getElementById("inputPassword").style.borderColor = "";
+      return true;
     }
   }
-  verificaEmail();
-  verificaSenha();
 
-  console.log(email)
+  if (verificaEmail() && verificaSenha()) {
+    login(email, password)
+  } else {
+    console.log("error")
+  }
+
+
 });
+
+function login(email, password) {
+  let data = {
+    "email": email,
+    "password": password
+
+  }
+  let settings = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Connection": "keep-alive",
+      "alg": "HS256",
+      "typ": "JWT"
+
+
+    },
+    body: JSON.stringify(data)
+  }
+
+  fetch(urlApi + 'users/login', settings).then((response) => {
+    console.log((response));
+    // console.log(response)
+    // 200	- Operación Exitosa. Retorna un JWT
+    // 400	- Contraseña incorrecta
+    // 404	- El usuario não existe
+    // 500	- Erro del servidor
+    return response.json()
+  }).then(body => {
+    let tokenLogin = body.jwt;
+    localStorage.setItem('tokenLogin', tokenLogin)
+
+    return tokenLogin;
+
+  }).then(async (token) => {
+    await storageUser(token)
+    if (token !== null) window.location.href = "/tarefas.html";
+  }).catch((error) => console.log(error))
+
+}
+
+async function storageUser(tokenLogin) {
+
+
+  let settings = {
+    method: "GET",
+    headers: {
+      authorization: tokenLogin,
+    }
+  }
+
+ await fetch(urlApi + 'users/getme', settings).then((response) => {
+
+    return response.json()
+  }).then((dataUser) => {
+
+    localStorage.setItem('user', JSON.stringify(dataUser));
+
+  }).catch((error) => console.log(error))
+
+
+}
+
+function logout() {
+  localStorage.clear()
+  window.location.href = "/index.html";
+}
+
+
+// let tokenLogin = localStorage.getItem("tokenLogin")
