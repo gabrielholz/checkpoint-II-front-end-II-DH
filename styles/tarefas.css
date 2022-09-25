@@ -114,6 +114,13 @@ a {
   text-align: center;
   color: grey;
 }
+  
+#nova-tarefa-error{
+  color: red;
+  font-size: 0.8em;
+  display: none;
+}
+
 
 /* Lista de tarefas ----------------------------------------------------------- */
 
@@ -178,13 +185,34 @@ a {
   box-shadow: 2px 2px 5px lightgrey;
 }
 
+.tarefa .descricao div {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.tarefa .descricao img{
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.btn-delete {
+  margin-left: 10px;
+}
+
 .tarefa .nome {
   color: rgb(95, 95, 95);
 }
 
-.tarefa .timestamp {
+.id {
+  padding: 5px;
+  min-width: 70px;
+}
+
+.tarefa .timestamp, .id {
   font-size: .9em;
   color: rgb(134, 134, 134);
+
 }
 
 .btn-finished div{
@@ -232,6 +260,10 @@ a {
   color: grey;
   text-decoration: line-through;
 }
+.tarefas-terminadas .tarefa .descricao button img{
+  width: 1.1em;
+  height: 1.1em;
+}
 
 #skeleton .descricao{
   background-color: rgb(189, 189, 189);
@@ -250,4 +282,15 @@ a {
 @keyframes trasparencia {
   0%{ opacity: 0.5;}
   100%{ opacity: 0.8;}
+}
+
+@media (max-width: 460px) {
+
+  /*mobile*/
+}
+
+@media (min-width: 461px) and (max-width:768px) {
+
+  /*tablet*/
+
 }

@@ -1,5 +1,6 @@
 let formulario = document.querySelector("form");
-let urlApi = "https://ctd-todo-api.herokuapp.com/v1/"
+let urlApi = "https://ctd-fe2-todo-v2.herokuapp.com/v1/";
+
 
 
 document.getElementById('botao').disabled = true
@@ -88,12 +89,14 @@ function login(email, password) {
 
   fetch(urlApi + 'users/login', settings).then((response) => {
     console.log((response));
-    // console.log(response)
-    // 200	- Operación Exitosa. Retorna un JWT
-    // 400	- Contraseña incorrecta
-    // 404	- El usuario não existe
-    // 500	- Erro del servidor
-    return response.json()
+    if (response.status === 404) {
+      document.getElementById("inputPassword").style.borderColor = "red";
+      document.getElementById("inputEmail").style.borderColor = "red";
+      document.getElementById("incorrect-error").style.display = "block";
+    }else{
+      return response.json()
+    }
+    
   }).then(body => {
     let tokenLogin = body.jwt;
     localStorage.setItem('tokenLogin', tokenLogin)
@@ -133,6 +136,3 @@ function logout() {
   localStorage.clear()
   window.location.href = "/index.html";
 }
-
-
-// let tokenLogin = localStorage.getItem("tokenLogin")

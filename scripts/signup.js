@@ -1,11 +1,11 @@
 let formulario = document.querySelector("form");
 
-let urlApi = "https://ctd-todo-api.herokuapp.com/v1/"
+let urlApi = "https://ctd-fe2-todo-v2.herokuapp.com/v1/";
+
 
 document.getElementById("botao").disabled = true;
 document.getElementById("botao").style.backgroundColor = "gray";
-document
-  .getElementById(
+document.getElementById(
     "nome" && "sobrenome" && "email" && "password" && "password-repeat"
   )
   .addEventListener("input", function habilita(event) {
@@ -46,18 +46,13 @@ formulario.addEventListener("submit", function (event) {
   let sobrenome = formulario["sobrenome"].value;
   let email = formulario["email"].value;
   let password = formulario["password"].value.split(" ").join("").trim();
-  let passworRepeat = formulario["password-repeat"].value
-    .split(" ")
-    .join("")
-    .trim();
-
-  console.log("esse é a senha: " + password);
-  console.log(nome);
+  let passworRepeat = formulario["password-repeat"].value.split(" ").join("").trim();
 
   function validateEmail(email) {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
   }
+
   validateEmail(email);
 
   function verificaNome() {
@@ -141,19 +136,12 @@ function createUser(data) {
       "Connection": "keep-alive",
       "alg": "HS256",
       "typ": "JWT"
-
-
     },
     body: JSON.stringify(data)
   }
 
   fetch(urlApi + 'users', settings).then((response) => {
     console.log((response));
-    // console.log(response)
-    // 200	- Operación Exitosa. Retorna un JWT
-    // 400	- Contraseña incorrecta
-    // 404	- El usuario não existe
-    // 500	- Erro del servidor
     return response.json()
   }).then(body => {
     let tokenLogin = body.jwt;
@@ -166,14 +154,9 @@ function createUser(data) {
     if (token !== null) window.location.href = "/tarefas.html";
   }).catch((error) => console.log(error))
 
-
-
-
 }
 
-
 async function storageUser(tokenLogin) {
-
 
   let settings = {
     method: "GET",
@@ -186,9 +169,7 @@ async function storageUser(tokenLogin) {
 
     return response.json()
   }).then((dataUser) => {
-
     localStorage.setItem('user', JSON.stringify(dataUser));
-
   }).catch((error) => console.log(error))
 
 

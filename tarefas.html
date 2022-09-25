@@ -23,7 +23,6 @@
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-
   <title>To-Do App</title>
 </head>
 
@@ -46,6 +45,7 @@
   <form class="nova-tarefa">
     <div class="not-done "></div>
     <input id="novaTarefa" type="text" placeholder="Nova tarefa">
+    <p id="nova-tarefa-error">Texto inválido.</p>
     <button type="submit">
       <img src="./assets/plus.png" alt="Adicionar uma nova tarefa">
     </button>
@@ -53,8 +53,43 @@
 
 
   <ul class="tarefas-pendentes">
-    <!-- <div id="skeleton"> -->
-    <div id="list-tasks">
+    <div id="skeleton">
+      <li class="tarefa">
+
+        <button onClick={} class="btn-finished">
+          <div class="not-done"></div>
+        </button>
+   
+        <div class="descricao">
+          <p class="id">...</p>
+          <p class="nome">...</p>
+        </div>
+      </li>
+      <li class="tarefa">
+
+        <button onClick={} class="btn-finished">
+          <div class="not-done"></div>
+        </button>
+   
+        <div class="descricao">
+          <p class="id">...</p>
+          <p class="nome">...</p>
+        </div>
+      </li>
+        <li class="tarefa">
+
+          <button onClick={} class="btn-finished">
+            <div class="not-done"></div>
+          </button>
+     
+          <div class="descricao">
+            <p class="id">...</p>
+            <p class="nome">...</p>
+          </div>
+        </li>
+  
+      </div>
+    <div id="list-tasks" style="display: none">
       <li class="tarefa">
         <div class="not-done"></div>
         <div class="descricao">
