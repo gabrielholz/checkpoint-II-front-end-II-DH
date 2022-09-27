@@ -105,7 +105,7 @@ function login(email, password) {
 
   }).then(async (token) => {
     await storageUser(token)
-    if (token !== null) window.location.href = "/tarefas.html";
+    if (token !== null) window.location.href = "./tarefas.html";
   }).catch((error) => console.log(error))
 
 }
@@ -134,5 +134,5 @@ async function storageUser(tokenLogin) {
 
 function logout() {
   localStorage.clear()
-  window.location.href = "/index.html";
+  window.location.href = "./index.html";
 }
